@@ -22,7 +22,7 @@
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Jumlah Barang</th>
-                        <th>Satuan Jenis Barang</th>
+                        {{-- <th>Satuan Jenis Barang</th> --}}
                         <th width="240px">Aksi</th>
                     </tr>
                     @foreach ($projects as $project)
