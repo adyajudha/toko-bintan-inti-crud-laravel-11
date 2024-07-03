@@ -30,15 +30,17 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'kode_barang' => 'required|integer',
-            'nama_barang' => 'required|max:255',
+            'kode_barang' => 'required|string',
+            'nama_barang' => 'required|string',
             'jumlah_barang' => 'required|integer',
+            'satuan_barang' => 'required|string',
         ]);
 
         $project = new Project();
         $project->kode_barang = $request->kode_barang;
         $project->nama_barang = $request->nama_barang;
         $project->jumlah_barang = $request->jumlah_barang;
+        $project->satuan_barang = $request->satuan_barang;
         $project->save();
 
         return redirect()->route('projects.index')
@@ -71,19 +73,21 @@ class ProjectController extends Controller
     public function update(Request $request, string $id)
     {
         request()->validate([
-            'kode_barang' => 'required|integer',
-            'nama_barang' => 'required|max:255',
+            'kode_barang' => 'required|string',
+            'nama_barang' => 'required|string',
             'jumlah_barang' => 'required|integer',
+            'satuan_barang' => 'required|string',
         ]);
 
-        $project = Project::find($id);
+        $project = new Project();
         $project->kode_barang = $request->kode_barang;
         $project->nama_barang = $request->nama_barang;
         $project->jumlah_barang = $request->jumlah_barang;
+        $project->satuan_barang = $request->satuan_barang;
         $project->save();
 
         return redirect()->route('projects.index')
-            ->with('success', 'Project updated successfully!');
+            ->with('success', 'Barang telah diperbarui!');
     }
 
     /**
@@ -93,6 +97,6 @@ class ProjectController extends Controller
     {
         Project::destroy($id);
         return redirect()->route('projects.index')
-            ->with('success', 'Project deleted successfully!');
+            ->with('success', 'Barang telah dihapus!');
     }
 }
